@@ -35,7 +35,22 @@ const client = new OpenRouter({
     serverURL: "https://ai.hackclub.com/proxy/v1",
 });
 
-// Thanks to the gorkie (dev) slack bot for fixing this, even though I was asking for human helps.
+async function check_if_character(pi) {
+    const response = await client.chat.send({
+    chatRequest: {
+            model: "~openai/gpt-mini-latest",
+            messages: [
+                { role: "user", content: `Check the following description to make sure it is describing a character of some sort. If it is, return true, if not, return false. Description: ${pi}` },
+            ],
+            stream: false,
+        },
+    });
+    const check_response = response.choices[0].message.content;
+    return check_response
+}
+
+
+
 async function gettraits(pi) {
     const response = await client.chat.send({
         chatRequest: {
@@ -88,21 +103,21 @@ async function generateimage(pi) {
     return imageUrl;
 }
 
-// //const traits = await gettraits(prompt)
-// console.log(traits)
-
-// //const imagething = await generateimage(prompt)
-// console.log(imagething)
-
-// Ignore this:
-// await clipboard.write(imagething);
 app.get('/imagegen', async (req, res) => {
     const prompt = req.query.prompt
-    console.log(prompt)
+    const is_character = await check_if_character(prompt)
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    const thingu = await generateimage(prompt)
-    res.status(200).json({ result: thingu});
 
+    if (is_character === 'true') {
+        console.log("Seems legit, let's make it.")
+        console.log(prompt)
+        const character_image = await generateimage(prompt)
+        res.status(200).json({ result: character_image}); 
+    } else {
+        console.log("Hey, That's not a character!")
+        res.status(200).json({ result: 'char' });
+
+    }
 });
