@@ -1,5 +1,8 @@
+const imgthing = document.getElementById("displayimg")
+const cd = document.getElementById("chardescription")
+
 async function getRequest() {
-    const info = "This is a test.";
+    const info = cd.value;
 
     const response = await fetch(
         `http://localhost:3000/imagegen?prompt=${encodeURIComponent(info)}`
@@ -7,7 +10,7 @@ async function getRequest() {
 
     const result = await response.json();
 
-    console.log(result);
+    imgthing.src = result.result
 }
 
-getRequest();
+//getRequest();

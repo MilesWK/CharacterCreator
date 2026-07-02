@@ -11,7 +11,7 @@
         <div class="container">
             <div class="descriptioncontainer">
                 <h1>What are you creating today?</h1>
-                <input placeholder="A wizard with long hair..." type="text" id="descrition"><button>Make <i class="fa-solid fa-paper-plane"></i></button>
+                <input placeholder="A wizard with long hair..." type="text" id="chardescription"><button onclick="getRequest()">Make <i class="fa-solid fa-paper-plane"></i></button>
             <div class="container2">
             <div class="options">
                     <select name="model" id="model">
@@ -23,8 +23,8 @@
                 <div class="options">
                     <select name="model" id="model">
                         <option value="openai/gpt-mini-latest">Live-Action</option>
-                        <option value="google/gemini-flash-latest">Gemini Flash: Fast, Medium Quality</option>
-                        <option value="openai/gpt-5.4-image-2">OpenAI 5.4: Slower, High-Quality</option>
+                        <option value="google/gemini-flash-latest">Cartoon</option>
+                        <option value="openai/gpt-5.4-image-2">Sketch</option>
                     </select>
                 </div>
         </div>
