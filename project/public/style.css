@@ -1,3 +1,9 @@
+/* This actually just goes to a picture of "AI" */
+
+:root {
+  --image-url: url("https://media.istockphoto.com/id/2207141986/photo/ai-governance-and-responsive-generative-artificial-intelligence-use-compliance-strategy-and.jpg?s=612x612&w=0&k=20&c=JK0ezw-lui-0gxbKB2rWqUMD3gza0pUI_aeb7-GkFBI=")
+}
+
 .container {
     justify-content: center;
     align-items: center;
@@ -106,11 +112,16 @@ option:focus {
 }
 
 #displayimg {
-  padding: 0;
   border: 2px black solid;
+  border-radius: 30px;
   width: 100%;
   height: 300px;
   object-fit: contain;
+  background-image: var(--image-url);
+  background-size: contain;
+  background-repeat: none;
+  background-position: center;
+  margin: 30px;
 
 }
 

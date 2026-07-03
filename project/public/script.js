@@ -18,8 +18,7 @@ async function getRequest() {
         error.classList.remove("hidden")
         console.log("WHOAAAA... ")
     } else {
-
-    img_element.src = result.result
+    document.documentElement.style.setProperty('--image-url', `url(${result.result})`);
     img_element.classList.remove("hidden")
  }
 }
