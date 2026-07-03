@@ -8,13 +8,19 @@ My sister and her friends are making a book, and have been using AI to make imag
 
 # Roadmap:
 
-- [ ] AI Background
+- [x] **AI Background**
   - [x] Main Adjectives
-  - [ ] Image Generation (in progress)
-  - [ ] Prompt Checker (to make sure it is a character being created)
+  - [x] Image Generation
+  - [x] Prompt Checker
 
-- [ ] Frontend
+
+- [ ] **Frontend**
     - [ ] Main prompt window (in progress)
     - [ ] Chat place (?)
     - [ ] File Preview
     - [ ] File Loading
+
+- [ ] **Additional Features**:
+    - [ ] Custom Model Support
+    - [ ] Custom API Key
+

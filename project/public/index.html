@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Characterizer</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container">
-            <div class="descriptioncontainer">
-                <h1>What are you creating today?</h1>
-                <input placeholder="A wizard with long hair..." type="text" id="chardescription"><button onclick="getRequest()">Make <i class="fa-solid fa-paper-plane"></i></button>
+
+<head>
+    <title>Characterizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="descriptioncontainer">
+            <h1>What are you creating today?</h1>
+            <input placeholder="A wizard with long hair..." type="text" id="chardescription"><button
+                onclick="getRequest()">Make <i class="fa-solid fa-paper-plane"></i></button>
             <div class="container2">
-            <div class="options">
+                <div class="error_box hidden" id="error">
+                    <i class="fa-solid fa-circle-exclamation erroricon"></i>
+                    <p id="errormsg">Your prompt must be a character.</p>
+                </div>
+            </div>
+            <div class="container2">
+                <div class="options">
                     <select name="model" id="model">
                         <option value="openai/gpt-mini-latest">OpenAI Mini: Fast, Lower Quality</option>
                         <option value="google/gemini-flash-latest">Gemini Flash: Fast, Medium Quality</option>
@@ -27,19 +36,24 @@
                         <option value="openai/gpt-5.4-image-2">Sketch</option>
                     </select>
                 </div>
-        </div>
 
-        
-        <div class="error_box hidden" id="error">
-            <i class="fa-solid fa-circle-exclamation erroricon"></i>
-            <p id="errormsg">Your prompt must be a character.</p>
-        </div>
             </div>
-            
+            <div class="container2">
+            <img id="displayimg" src="">
+        </div>
+
 
         </div>
-        <img id="displayimg" src="/">
-    </body>
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/f38573ff90.js" crossorigin="anonymous"></script>
+
+
+    </div>
+    
+
+
+
+
+</body>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/f38573ff90.js" crossorigin="anonymous"></script>
+
 </html>

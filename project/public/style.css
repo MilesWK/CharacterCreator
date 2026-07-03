@@ -89,6 +89,7 @@ option:focus {
 
 .hidden {
   visibility: hidden;
+  display: none;
 }
 
 .error_box {
@@ -102,4 +103,13 @@ option:focus {
   font-weight: bold;
   width: 200px;
   display: flexbox;
+}
+
+#displayimg {
+  transform: scale(0.3)
+}
+
+.imgcontainer {
+  justify-content: center;
+  display: flex;
 }
