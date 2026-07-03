@@ -35,6 +35,9 @@ const client = new OpenRouter({
     serverURL: "https://ai.hackclub.com/proxy/v1",
 });
 
+
+// This actually works suprisingly well! I was expecting it to say something like "based on the input you provided, I say true" but I haven't come across too many issues.
+// Ocassionally though this will falsely accuse prompts. I have only had that happen once though.
 async function check_if_character(pi) {
     const response = await client.chat.send({
     chatRequest: {
@@ -50,7 +53,8 @@ async function check_if_character(pi) {
 }
 
 
-
+// Get the traits of the character they are making. 
+// While the AI doesn't use the traits, I am hoping to have a little display that shows them.
 async function gettraits(pi) {
     const response = await client.chat.send({
         chatRequest: {
@@ -78,7 +82,7 @@ async function generateimage(pi) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                model: 'google/gemini-3.1-flash-lite-image',
+                model: 'google/gemini-3.1-flash-lite-image', // I don't like this model very much.
                 messages: [
                     {
                         role: 'user',
@@ -87,37 +91,35 @@ async function generateimage(pi) {
                 ],
                 modalities: ['image', 'text'],
                 image_config: {
-                    aspect_ratio: '16:9'
+                    aspect_ratio: '16:9' // Probably going to be changeable
                 }
             }),
         }
     );
 
-
+    // The next four lines were SO ANNOYING.
     const data = await response3.json();
-
     console.log(JSON.stringify(data, null, 2));
-
     const imageUrl = data.choices[0].message.images[0].image_url.url;
-
     return imageUrl;
 }
 
 app.get('/imagegen', async (req, res) => {
     const prompt = req.query.prompt
     const is_character = await check_if_character(prompt)
+
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     if (is_character === 'true') {
-        console.log("Seems legit, let's make it.")
+        console.log("Seems legit, let's make it.")  // I like to give programs a personality. 
         console.log(prompt)
         const character_image = await generateimage(prompt)
         res.status(200).json({ result: character_image}); 
     } else {
-        console.log("Hey, That's not a character!")
-        res.status(200).json({ result: 'char' });
+        console.log("Hey, That's not a character!") // Isn't that what everyone says?
+        res.status(200).json({ result: 'char' }); // "char" was chosen here to stand for character. I bet somewhere a developer things that was a stupid thing for me to do. :)
 
     }
 });
