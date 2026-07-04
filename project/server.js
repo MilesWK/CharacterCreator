@@ -69,6 +69,21 @@ async function gettraits(pi) {
     return traits_response
 }
 
+// This worked first try, no errors. it was fantasitc.
+
+async function getfilename(pi) {
+    const response = await client.chat.send({
+        chatRequest: {
+            model: "~openai/gpt-mini-latest",
+            messages: [
+                { role: "user", content: `Create a no space short file name without the file type for an image of the following character description: ${pi}` },
+            ],
+            stream: false,
+        },
+    });
+    const name_response = response.choices[0].message.content;
+    return name_response
+}
 // This is the QuickStart code example but modified. This was a pain to get working
 async function generateimage(pi) {
     console.log("Generating image");
@@ -107,7 +122,6 @@ async function generateimage(pi) {
 app.get('/imagegen', async (req, res) => {
     const prompt = req.query.prompt
     const is_character = await check_if_character(prompt)
-
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -115,8 +129,11 @@ app.get('/imagegen', async (req, res) => {
     if (is_character === 'true') {
         console.log("Seems legit, let's make it.")  // I like to give programs a personality. 
         console.log(prompt)
+        const traits = await gettraits(prompt)
         const character_image = await generateimage(prompt)
-        res.status(200).json({ result: character_image}); 
+        const filename = await getfilename(prompt)
+
+        res.status(200).json({ result: character_image, name: filename, traits: traits}); 
     } else {
         console.log("Hey, That's not a character!") // Isn't that what everyone says?
         res.status(200).json({ result: 'char' }); // "char" was chosen here to stand for character. I bet somewhere a developer things that was a stupid thing for me to do. :)

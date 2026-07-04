@@ -4,6 +4,11 @@
   --image-url: url("https://media.istockphoto.com/id/2207141986/photo/ai-governance-and-responsive-generative-artificial-intelligence-use-compliance-strategy-and.jpg?s=612x612&w=0&k=20&c=JK0ezw-lui-0gxbKB2rWqUMD3gza0pUI_aeb7-GkFBI=")
 }
 
+body, html {
+  padding: 0;
+  margin: 0;
+}
+
 .container {
     justify-content: center;
     align-items: center;
@@ -117,15 +122,42 @@ option:focus {
   width: 100%;
   height: 300px;
   object-fit: contain;
-  background-image: var(--image-url);
+   background-image: var(--image-url);
   background-size: contain;
   background-repeat: none;
   background-position: center;
   margin: 30px;
+
+  justify-content: center;
+  align-items: center;
 
 }
 
 .imgcontainer {
   justify-content: center;
   display: flex;
+}
+
+.imgcontrol {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 30px;;
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.imgcontrol:hover {
+  background-color: rgba(113, 234, 255, 0.9);
+  width: 30px;
+  height: 30px;
+  padding: 20px;
+}
+
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
