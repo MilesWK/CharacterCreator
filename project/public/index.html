@@ -20,6 +20,10 @@
                     <i class="fa-solid fa-circle-exclamation erroricon"></i>
                     <p id="errormsg">Your prompt must be a character.</p>
                 </div>
+                <div class="error_box hidden" id="maxrqst">
+                    <i class="fa-solid fa-circle-exclamation erroricon"></i>
+                    <p id="errormsg">Uh Oh! You have used up all of the images for today! Come back tomorrow</p>
+                </div>
             </div>
 
 
@@ -42,12 +46,23 @@
                 </div>
             </div> 
             -->
+            <div class="container2">
 
-            <div id="displayimg" class="hidden">
-                <div class="buttoncontainer">
-                <div class="hidden" id="downloadbtn" onclick="download_img()"><i class="fa-solid fa-download imgcontrol "></i></div>
-                <div class="hidden" id="sharebtn"><i class="fa-solid  fa-share imgcontrol"></i></div></div>
-            </div> 
+                <div class="imgcontainer" id="imgcontainer">
+                    
+                        <img id="displayimg" class="hidden" src="">
+                        <div class="btncontainer">
+                            <div class="hidden" id="downloadbtn" onclick="download_img()"><i
+                                    class="fa-solid fa-download imgcontrol "></i></div>
+                            <div class="hidden" id="sharebtn"><i class="fa-solid  fa-share imgcontrol"></i></div>
+                        </div>
+
+       
+                </div>
+
+            </div>
+
+
 
 
         </div>

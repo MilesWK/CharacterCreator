@@ -114,9 +114,10 @@ async function generateimage(pi) {
 
     // The next four lines were SO ANNOYING.
     const data = await response3.json();
-    console.log(JSON.stringify(data, null, 2));
+    //console.log(JSON.stringify(data, null, 2));
     const imageUrl = data.choices[0].message.images[0].image_url.url;
     return imageUrl;
+    console.log("Image finished with no issues")
 }
 
 app.get('/imagegen', async (req, res) => {
