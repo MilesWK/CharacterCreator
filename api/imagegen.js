@@ -126,4 +126,4 @@ export default async function handler(req, res) {
         res.status(200).json({ result: 'char' }); // "char" was chosen here to stand for character. I bet somewhere a developer things that was a stupid thing for me to do. :)
 
     }
-}t;
+};
