@@ -34,7 +34,7 @@ async function getRequest() {
         rqstbox.classList.remove("hidden")
     } else {
     const response = await fetch(
-        `https://character-creator-two.vercel.app/api/imagegen?prompt=${encodeURIComponent(info)}`
+        `http://localhost:3000/imagegen?prompt=${encodeURIComponent(info)}`
     );
     const result = await response.json()
     if (await result.result === "char") {
