@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This takes a description of a character, feeds it into AI, and sends you a picture of that character.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
