@@ -18,9 +18,7 @@ app.get('/', (req, res) => {
     res.send('<h1>Backend is up! ✅</h1>');
 });
 
-app.listen(port, () => {
-    console.log(`Backend opperational. Port: ${port}`);
-});
+export default app;
 
 // This prompt is from my sister, who is writing a book. She gets very descriptive.
 const prompt = "Lauren has long, light blond hair with layers, highlights and blue eyes. She: Loves shopping, has a boyfriend named Carson, usually talks to her friends and Carson only, has and ADORABLE sense of style, has rich parents, does lots of makeup but makes her makeup look pretty, is quiet but when she speaks she speaks with purpose, tan; blonde; blue-eyed; sweet; smart. She also wears cute, circle, pink glasses. She can be sassy and is 18. She is 5 '5."
