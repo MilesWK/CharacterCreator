@@ -127,7 +127,7 @@ option:focus {
 #displayimg {
   border-radius: 30px;
   width: auto;
-  height: 200px;
+  height: 300px;
   object-fit: contain;
    /* background-image: var(--image-url); */
   background-size: contain;

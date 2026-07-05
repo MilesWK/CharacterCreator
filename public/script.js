@@ -1,10 +1,8 @@
-// A small little program. Let's hope this doesn't need any more work.
-// (p.s. It will.)
-
 const img_element = document.getElementById("displayimg")
 const img_container = document.getElementById("imgcontainer")
 const cd = document.getElementById("chardescription")
 const errbox = document.getElementById("error")
+const errmsg = document.getElementById("errormsg")
 const sharebtn = document.getElementById("sharebtn")
 const downloadbtn = document.getElementById("downloadbtn")
 const rqstbox = document.getElementById("maxrqst")
@@ -33,13 +31,16 @@ async function getRequest() {
     if (localStorage.getItem("requestsRemaining" < 1)) {
         rqstbox.classList.remove("hidden")
     } else {
+        try {
     const response = await fetch(
         `http://localhost:3000/imagegen?prompt=${encodeURIComponent(info)}`
     );
-    const result = await response.json()
+    const result = await response.json() } catch {    errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
+    error.classList.remove("hidden")}
+    if (response.ok) {
     if (await result.result === "char") {
-        error.classList.remove("hidden")
-        console.log("WHOAAAA... ")
+            errmsg.innerHTML = "Your prompt must be a character."
+            error.classList.remove("hidden")
     } else {
         globalThis.traits = result.traits;
         globalThis.name = result.name;
@@ -51,6 +52,10 @@ async function getRequest() {
         img_element.src = imgurl  // I gave up on the 
     //document.documentElement.style.setProperty('--image-url', `url(${result.result})`);
     img_element.classList.remove("hidden")
+    }
+ } else {
+    errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
+    error.classList.remove("hidden")
  }
  }
 }
