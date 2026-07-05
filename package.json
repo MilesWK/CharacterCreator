@@ -1,0 +1,24 @@
+{
+  "name": "charactercreator",
+  "version": "1.0.0",
+  "description": "This takes a description of a character, feeds it into AI, and sends you a picture of that character.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MilesWK/CharacterCreator.git"
+  },
+  "keywords": [],
+  "author": "Miles Krueger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MilesWK/CharacterCreator/issues"
+  },
+  "homepage": "https://github.com/MilesWK/CharacterCreator#readme",
+  "dependencies": {
+    "@openrouter/sdk": "^0.13.24",
+    "express": "^5.2.1"
+  }
+}
