@@ -7,7 +7,6 @@
 // -- Miles Krueger (hi@mileswk.com)
 
 import { OpenRouter } from "@openrouter/sdk";
-import clipboard from 'clipboardy';
 import express from 'express';
 
 const app = express();
@@ -25,7 +24,6 @@ const prompt = "Lauren has long, light blond hair with layers, highlights and bl
 
 
 // I usually don't use env... which is something I shouldn't mention...
-process.loadEnvFile()
 
 // I use OpenRouter as well as fetching the endpoint differently.
 const client = new OpenRouter({
