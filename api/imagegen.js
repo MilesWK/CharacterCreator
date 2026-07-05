@@ -7,17 +7,7 @@
 // -- Miles Krueger (hi@mileswk.com)
 
 import { OpenRouter } from "@openrouter/sdk";
-import express from 'express';
 
-const app = express();
-const port = 3000;
-
-// I guess if you see anything it is up. 
-app.get('/', (req, res) => {
-    res.send('<h1>Backend is up! ✅</h1>');
-});
-
-export default app;
 
 // This prompt is from my sister, who is writing a book. She gets very descriptive.
 const prompt = "Lauren has long, light blond hair with layers, highlights and blue eyes. She: Loves shopping, has a boyfriend named Carson, usually talks to her friends and Carson only, has and ADORABLE sense of style, has rich parents, does lots of makeup but makes her makeup look pretty, is quiet but when she speaks she speaks with purpose, tan; blonde; blue-eyed; sweet; smart. She also wears cute, circle, pink glasses. She can be sassy and is 18. She is 5 '5."
@@ -116,7 +106,7 @@ async function generateimage(pi) {
     console.log("Image finished with no issues")
 }
 
-app.get('/imagegen', async (req, res) => {
+export default async function handler(req, res) {
     const prompt = req.query.prompt
     const is_character = await check_if_character(prompt)
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -136,4 +126,4 @@ app.get('/imagegen', async (req, res) => {
         res.status(200).json({ result: 'char' }); // "char" was chosen here to stand for character. I bet somewhere a developer things that was a stupid thing for me to do. :)
 
     }
-});
+};
