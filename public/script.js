@@ -1,5 +1,7 @@
-// There is probably a better way to o this, but you know,.
+// There is probably a better way to do this, but you know,.
 
+
+// HTML ELEMENTS:
 const img_element = document.getElementById("displayimg")
 const img_container = document.getElementById("imgcontainer")
 const cd = document.getElementById("chardescription")
@@ -8,7 +10,10 @@ const errmsg = document.getElementById("errormsg")
 const sharebtn = document.getElementById("sharebtn")
 const downloadbtn = document.getElementById("downloadbtn")
 const rqstbox = document.getElementById("maxrqst")
-const rqst = localStorage.getItem("requestsRemaining");
+const file_upload = document.getElementById("imgupload")
+
+// LOCAL STORAGE ELEMENTS:
+const rqst = localStorage.getItem("requestsRemaining")
 const last_date = localStorage.getItem("date")
 
 console.log(rqst)
@@ -23,20 +28,25 @@ if (last_date !== date_official) {  // If the date isn't today
 } 
 
 function openFile() {
-document.getElementById("imgupload").click()}
+    file_upload.click()
+}
 
 
 console.log(date_official)
-async function getRequest() {
-    error.classList.add("hidden")
 
+
+// At this point, its hard to find anything in this function:
+async function getRequest() {
+
+    error.classList.add("hidden")
+    files = file_upload.files[0];
     const info = cd.value;
     if (localStorage.getItem("requestsRemaining" < 1)) {
         rqstbox.classList.remove("hidden")
     } else {
         try {
     const response = await fetch(
-        `/api/imagegen?prompt=${encodeURIComponent(info)}`
+        `https://character-creator-two.vercel.app/api/imagegen?prompt=${encodeURIComponent(info)},files=${files}`
     );
     const result = await response.json() } catch {    errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
     error.classList.remove("hidden")}
@@ -64,11 +74,11 @@ async function getRequest() {
 }
 
 function download_img() {
-    var a = document.createElement("a"); //Create <a>
-    a.href = imgurl //Image Base64 Goes here
+    var a = document.createElement("a"); 
+    a.href = imgurl 
     console.log(`${name}.jpg`)
-    a.download = `${name}.jpg`; //File name Here
-    a.click(); //Downloaded file
+    a.download = `${name}.jpg`; 
+    a.click()
 }
 
  img_container.addEventListener('mouseover', () => {
