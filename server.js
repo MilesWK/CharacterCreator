@@ -1,3 +1,7 @@
+// for local dev only
+// use imagegen.js for prod.
+ 
+
 // Note about the comments here: 
 //
 // A big sign of AI use is the comments it leaves. However,
@@ -7,9 +11,23 @@
 // -- Miles Krueger (hi@mileswk.com)
 
 import { OpenRouter } from "@openrouter/sdk";
+import express from 'express';
+
+const app = express();
+const port = 3000;
+
+// I guess if you see anything it is up. 
+app.get('/', (req, res) => {
+    res.send('<h1>Backend is up! ✅</h1>');
+});
+
+app.listen(port, () => {
+    console.log(`Backend opperational. Port: ${port}`);
+});
 
 
 // I usually don't use env... which is something I shouldn't mention...
+process.loadEnvFile()
 
 // I use OpenRouter as well as fetching the endpoint differently.
 const client = new OpenRouter({
@@ -102,7 +120,7 @@ async function generateimage(pi) {
     console.log("Image finished with no issues")
 }
 
-export default async function handler(req, res) {
+app.get('/imagegen', async (req, res) => {
     const prompt = req.query.prompt
     const is_character = await check_if_character(prompt)
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -122,4 +140,4 @@ export default async function handler(req, res) {
         res.status(200).json({ result: 'char' }); // "char" was chosen here to stand for character. I bet somewhere a developer things that was a stupid thing for me to do. :)
 
     }
-};
+});

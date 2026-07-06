@@ -25,7 +25,7 @@ const date_official = current_date.toLocaleDateString()
 if (last_date !== date_official) {  // If the date isn't today
     localStorage.setItem("requestsRemaining", 10)
     localStorage.setItem("date", date_official)
-} 
+}
 
 function openFile() {
     file_upload.click()
@@ -41,53 +41,58 @@ async function getRequest() {
     error.classList.add("hidden")
     files = file_upload.files[0];
     const info = cd.value;
+    let response;
+    let result;
     if (localStorage.getItem("requestsRemaining" < 1)) {
         rqstbox.classList.remove("hidden")
     } else {
         try {
-    const response = await fetch(
-        `https://character-creator-two.vercel.app/api/imagegen?prompt=${encodeURIComponent(info)},files=${files}`
-    );
-    const result = await response.json() } catch {    errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
-    error.classList.remove("hidden")}
-    if (response.ok) {
-    if (await result.result === "char") {
-            errmsg.innerHTML = "Your prompt must be a character."
+            const response = await fetch(
+                `http://localhost:3000/imagegen?prompt=${encodeURIComponent(info)},files=${files}`
+            );
+            const result = await response.json()
+        } catch {
+            errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
             error.classList.remove("hidden")
-    } else {
-        globalThis.traits = result.traits;
-        globalThis.name = result.name;
-        globalThis.imgurl = result.result
-        var rqst = localStorage.getItem("requestsRemaining")
-        var new_value = rqst - 1
-        localStorage.setItem("requestsRemaining", new_value)
+        }
+        if (response.ok) {
+            if (await result.result === "char") {
+                errmsg.innerHTML = "Your prompt must be a character."
+                error.classList.remove("hidden")
+            } else {
+                globalThis.traits = result.traits;
+                globalThis.name = result.name;
+                globalThis.imgurl = result.result
+                var rqst = localStorage.getItem("requestsRemaining")
+                var new_value = rqst - 1
+                localStorage.setItem("requestsRemaining", new_value)
 
-        img_element.src = imgurl  // I gave up on the 
-    //document.documentElement.style.setProperty('--image-url', `url(${result.result})`);
-    img_element.classList.remove("hidden")
+                img_element.src = imgurl  // I gave up on the 
+                //document.documentElement.style.setProperty('--image-url', `url(${result.result})`);
+                img_element.classList.remove("hidden")
+            }
+        } else {
+            errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
+            error.classList.remove("hidden")
+        }
     }
- } else {
-    errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
-    error.classList.remove("hidden")
- }
- }
 }
 
 function download_img() {
-    var a = document.createElement("a"); 
-    a.href = imgurl 
+    var a = document.createElement("a");
+    a.href = imgurl
     console.log(`${name}.jpg`)
-    a.download = `${name}.jpg`; 
+    a.download = `${name}.jpg`;
     a.click()
 }
 
- img_container.addEventListener('mouseover', () => {
+img_container.addEventListener('mouseover', () => {
     sharebtn.classList.remove("hidden");
     downloadbtn.classList.remove("hidden");
-   })
+})
 
 img_container.addEventListener("mouseleave", () => {
-   sharebtn.classList.add("hidden");
+    sharebtn.classList.add("hidden");
     downloadbtn.classList.add("hidden");
 })
 
