@@ -1,3 +1,5 @@
+// There is probably a better way to o this, but you know,.
+
 const img_element = document.getElementById("displayimg")
 const img_container = document.getElementById("imgcontainer")
 const cd = document.getElementById("chardescription")
@@ -8,6 +10,7 @@ const downloadbtn = document.getElementById("downloadbtn")
 const rqstbox = document.getElementById("maxrqst")
 const rqst = localStorage.getItem("requestsRemaining");
 const last_date = localStorage.getItem("date")
+
 console.log(rqst)
 const current_date = new Date();
 
@@ -19,8 +22,8 @@ if (last_date !== date_official) {  // If the date isn't today
     localStorage.setItem("date", date_official)
 } 
 
-
-
+function openFile() {
+document.getElementById("imgupload").click()}
 
 
 console.log(date_official)
@@ -33,7 +36,7 @@ async function getRequest() {
     } else {
         try {
     const response = await fetch(
-        `https://character-creator-two.vercel.app/api/imagegen?prompt=${encodeURIComponent(info)}`
+        `/api/imagegen?prompt=${encodeURIComponent(info)}`
     );
     const result = await response.json() } catch {    errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
     error.classList.remove("hidden")}

@@ -27,7 +27,7 @@ body, html {
     font-family: "Borel", cursive;
 }
 
-input {
+#chardescription {
     border: 2px rgb(160, 160, 160) solid;
     padding: 10px;
     width: 60%;
@@ -35,7 +35,27 @@ input {
     border-radius: 30px;
 }
 
-button {
+#imgupload {
+  display: none;
+}
+
+.fileuploadbtn {
+  width: 40px;
+  height: 40px;
+  margin: 30px;
+  text-align: center;;
+  border-radius: 40px;
+  border: 2px dashed rgb(156, 156, 156);
+  background: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.fileuploadbtn:hover {
+  transform: rotate(30deg);
+}
+
+.makebtn {
     padding: 10px;
     background-color: rgb(53, 53, 255);
     border: none;
@@ -45,8 +65,9 @@ button {
     transition: 0.3s ;
 }
 
-button:hover {
+.makebtn:hover {
     background-color: rgb(0, 153, 158);
+    cursor: pointer;
 }
 
 .options {
@@ -60,42 +81,6 @@ button:hover {
     justify-content: center;
     display: flex;
     font-family: sans-serif;
-}
-
-select,
-::picker(select) {
-  appearance: base-select;
-}
-
-option::checkmark {
-  order: 1;
-  margin-left: auto;
-  content: "☑️";
-}
-
-select::picker-icon {
-  color: #999999;
-  transition: 0.4s rotate;
-}
-
-select:open::picker-icon {
-  rotate: 180deg;
-}
-
-::picker(select) {
-  border: none;
-}
-option:nth-of-type(odd) {
-  background: white;
-}
-
-option:nth-of-type(even) {
-  background: rgb(197, 197, 197);
-}
-
-option:hover,
-option:focus {
-  background: rgb(255, 130, 130);
 }
 
 .hidden {

@@ -13,16 +13,15 @@
     <div class="container">
         <div class="descriptioncontainer">
             <h1>What are you creating today?</h1>
-            <input placeholder="A wizard with long hair..." type="text" id="chardescription"><button
-                onclick="getRequest()">Make <i class="fa-solid fa-paper-plane"></i></button>
+            <input placeholder="A wizard with long hair..." type="text" id="chardescription">
+            <input type="file" accept="image/*"  id="imgupload" multiple/>
+            <button class="fileuploadbtn" onclick="openFile()"><i class="fa-solid fa-plus"></i></button>
+            <button
+                class="makebtn" onclick="getRequest()">Make <i class="fa-solid fa-paper-plane"></i></button>
             <div class="container2">
                 <div class="error_box hidden" id="error">
                     <i class="fa-solid fa-circle-exclamation erroricon"></i>
                     <p id="errormsg">Your prompt must be a character.</p>
-                </div>
-                <div class="error_box hidden" id="maxrqst">
-                    <i class="fa-solid fa-circle-exclamation erroricon"></i>
-                    <p id="errormsg">Uh Oh! You have used up all of the images for today! Come back tomorrow</p>
                 </div>
             </div>
 
