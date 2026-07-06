@@ -51,30 +51,31 @@ async function getRequest() {
                 `http://localhost:3000/imagegen?prompt=${encodeURIComponent(info)},files=${files}`
             );
             const result = await response.json()
+            if (response.ok) {
+                if (await result.result === "char") {
+                    errmsg.innerHTML = "Your prompt must be a character."
+                    error.classList.remove("hidden")
+                } else {
+                    globalThis.traits = result.traits;
+                    globalThis.name = result.name;
+                    globalThis.imgurl = result.result
+                    var rqst = localStorage.getItem("requestsRemaining")
+                    var new_value = rqst - 1
+                    localStorage.setItem("requestsRemaining", new_value)
+
+                    img_element.src = imgurl  // I gave up on the 
+                    //document.documentElement.style.setProperty('--image-url', `url(${result.result})`);
+                    img_element.classList.remove("hidden")
+                }
+            } else {
+                errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
+                error.classList.remove("hidden")
+            }
         } catch {
             errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
             error.classList.remove("hidden")
         }
-        if (response.ok) {
-            if (await result.result === "char") {
-                errmsg.innerHTML = "Your prompt must be a character."
-                error.classList.remove("hidden")
-            } else {
-                globalThis.traits = result.traits;
-                globalThis.name = result.name;
-                globalThis.imgurl = result.result
-                var rqst = localStorage.getItem("requestsRemaining")
-                var new_value = rqst - 1
-                localStorage.setItem("requestsRemaining", new_value)
 
-                img_element.src = imgurl  // I gave up on the 
-                //document.documentElement.style.setProperty('--image-url', `url(${result.result})`);
-                img_element.classList.remove("hidden")
-            }
-        } else {
-            errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
-            error.classList.remove("hidden")
-        }
     }
 }
 
