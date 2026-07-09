@@ -1,2 +1,5 @@
+# Don't be stealing me API Key
 .env
+
+# You don't want 2K+ files on my repo
 node_modules/

@@ -48,7 +48,7 @@ async function getRequest() {
     } else {
         try {
             const response = await fetch(
-                `http://localhost:3000/imagegen?prompt=${encodeURIComponent(info)},files=${files}`
+                `api/imagegen?prompt=${encodeURIComponent(info)}`
             );
             const result = await response.json()
             if (response.ok) {
