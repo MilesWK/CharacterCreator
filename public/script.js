@@ -91,12 +91,10 @@ function download_img() {
 }
 
 img_container.addEventListener('mouseover', () => {
-    sharebtn.classList.remove("hidden");
     downloadbtn.classList.remove("hidden");
 })
 
 img_container.addEventListener("mouseleave", () => {
-    sharebtn.classList.add("hidden");
     downloadbtn.classList.add("hidden");
 })
 
