@@ -11,7 +11,7 @@ const sharebtn = document.getElementById("sharebtn")
 const downloadbtn = document.getElementById("downloadbtn")
 const rqstbox = document.getElementById("maxrqst")
 const file_upload = document.getElementById("imgupload")
-const loader = document.getElementById("loader")
+const loadert = document.getElementById("loader")
 // LOCAL STORAGE ELEMENTS:
 const rqst = localStorage.getItem("requestsRemaining")
 const last_date = localStorage.getItem("date")
@@ -37,7 +37,7 @@ console.log(date_official)
 
 // At this point, its hard to find anything in this function:
 async function getRequest() {
-    loader.classList.remove("hidden")
+    loadert.classList.remove("hidden")
     error.classList.add("hidden")
     files = file_upload.files[0];
     const info = cd.value;
@@ -66,16 +66,19 @@ async function getRequest() {
                     img_element.src = imgurl  // I gave up on the 
                     //document.documentElement.style.setProperty('--image-url', `url(${result.result})`);
                     img_element.classList.remove("hidden")
+                    loadert.classList.add("hidden")
                 }
             } else {
                 errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
                 error.classList.remove("hidden")
+                loadert.classList.add("hidden")
             }
         } catch {
             errmsg.innerHTML = "Oh Dear, there seems to be an error! Come back later!"
             error.classList.remove("hidden")
+            loadert.classList.add("hidden")
         }
-        loader.classList.add("hidden")
+        
     }
 }
 
