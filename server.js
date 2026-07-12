@@ -58,7 +58,7 @@ async function check_if_character(pi) {
 async function gettraits(pi) {
     const response = await client.chat.send({
         chatRequest: {
-            model: "~openai/gpt-mini-latest",
+            model: "openrouter/free",
             messages: [
                 { role: "user", content: `Find any important visual traits in the following character description, seperating them by nothing aside from a comma and a space. ${pi}` },
             ],
@@ -74,7 +74,7 @@ async function gettraits(pi) {
 async function getfilename(pi) {
     const response = await client.chat.send({
         chatRequest: {
-            model: "~openai/gpt-mini-latest",
+            model: "openrouter/free",
             messages: [
                 { role: "user", content: `Create a no space short file name without the file type for an image of the following character description: ${pi}` },
             ],
@@ -97,7 +97,7 @@ async function generateimage(pi) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                model: 'google/gemini-3.1-flash-lite-image', // I don't like this model very much.
+                model: 'openrouter/free', // I don't like this model very much.
                 messages: [
                     {
                         role: 'user',
